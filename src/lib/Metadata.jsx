@@ -1,5 +1,4 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export const Metadata = ({
   title = "Your Project's name",
@@ -16,7 +15,7 @@ export const Metadata = ({
       <meta name="author" content={author} />
       <meta name="keywords" content={keywords} />
       <meta name="thumbnail" content={thumbnail} />
-      
+
       {/* Open Graph Meta Tags */}
       <meta property="og:url" content={window.location.href} />
       <meta property="og:type" content="website" />

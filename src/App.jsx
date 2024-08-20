@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import InitialAnimation from './components/animation/InitialAnimation';
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import InitialAnimation from "./components/animation/InitialAnimation";
 import CartService from "./components/cart/CartService";
 
 function App() {
@@ -18,7 +18,8 @@ function App() {
 
   const changeLanguage = (lng) => {
     console.log(`Changing language to: ${lng}`); // Debug log
-    i18n.changeLanguage(lng)
+    i18n
+      .changeLanguage(lng)
       .then(() => console.log(`Language changed to: ${i18n.language}`)) // Debug log
       .catch((error) => console.error(`Failed to change language: ${error}`)); // Debug log
   };
@@ -33,7 +34,7 @@ function App() {
         thumbnail="https://k-quicksight.istad.co/opengraph-image.jpg?d3bb2a9115260a5a"
       />
       {!isAnimationComplete && <InitialAnimation />}
-      <div className={`${isAnimationComplete ? 'block' : 'hidden'}`}>
+      <div className={`${isAnimationComplete ? "block" : "hidden"}`}>
         {/* Your main content goes here */}
         {/* Example usage of CartService */}
         <CartService />
