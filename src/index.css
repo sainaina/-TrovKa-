@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap');
+@import 'flowbite';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom CSS here */
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+  --text-color: #000000;
+  --hover-color: #555555; /* Change this to your desired hover color in light mode */
+}
+
+body.dark {
+  --text-color: #ffffff;
+  --hover-color: #bbbbbb; /* Change this to your desired hover color in dark mode */
+  background-color: #111827;
+  color: var(--text-color);
+}
+/* Light mode icon color */
+.text-lightModeIcon {
+  color: #f59e0b; /* Adjust to a light or bright color */
+}
+
+/* Dark mode icon color */
+.dark .text-lightModeIcon {
+  color: #74736f; /* Adjust to a suitable light color for dark mode */
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  gap: 1rem; /* Optional: space between items */
+}
+
+.navbar li {
+  list-style: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--hover-color); /* Change to your desired hover color */
+}
+
+ul {
+  display: flex;
+  justify-content: center; /* Center the items horizontally */
+  align-items: center; /* Center the items vertically */
+}
+
+li {
+  list-style: none; /* Remove default list styling */
+  margin: 0 15px; /* Add margin between items */
+}
+
+nav {
+  display: flex;
+  justify-content: space-between; /* Distribute space evenly */
+  align-items: center; /* Center items vertically */
+}
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Keep this section unchanged */
+.service-banner {
+    background-color: #022278; /* Primary background color */
+    color: white; /* Ensure text stays white */
+  }
+.inputs.dark{
+    background-color: #111827;
+    color: white;
+
+
+}
