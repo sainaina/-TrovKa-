@@ -30,23 +30,20 @@ const LoginPage = () => {
   const loginError = useSelector(selectError);
   const role = useSelector(selectUserRole);
 
-  
-
   const initialValues = {
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object({
-    email: Yup.string().email(t('Invalid_email')).required(t('Required')),
-    password: Yup.string().required(t('Required')),
+    email: Yup.string().email(t("Invalid_email")).required(t("Required")),
+    password: Yup.string().required(t("Required")),
   });
 
   const handleSubmit = (values) => {
     dispatch(fetchLogin(values));
   };
 
-  
   useEffect(() => {
     if (loginStatus === "success") {
       toast.success(t("Login_successful!"));
@@ -75,16 +72,14 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <div>
-        <Metadata
-          title="Login | TrovKa"
-          description="Sign in to TrovKa to manage your services."
-          author="TrovKa Team"
-          keywords="services, TrovKa, login"
-          thumbnail="https://i.ibb.co/s6D2gFC/trovka-icon.png"
-        />
-      </div>
+    <>
+      <Metadata
+        title="Login | TrovKa"
+        description="Sign in to TrovKa to manage your services."
+        author="TrovKa Team"
+        keywords="services, TrovKa, login"
+        thumbnail="https://i.ibb.co/s6D2gFC/trovka-icon.png"
+      />
       <div className="flex justify-center items-center min-h-screen">
         <div className="flex flex-col md:flex-row w-full max-w-6xl rounded-2xl">
           <div className="flex items-center justify-center w-full md:w-1/2 p-6 md:px-8">
@@ -199,7 +194,7 @@ const LoginPage = () => {
       </div>
 
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

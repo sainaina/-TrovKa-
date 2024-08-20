@@ -67,7 +67,7 @@ export const ContactUsNew = () => {
   };
 
   return (
-    <div>
+    <>
       <Metadata
         title="Contact Us | TrovKa"
         description="Get in touch with us at TrovKa for any inquiries or support."
@@ -356,6 +356,6 @@ export const ContactUsNew = () => {
         </div>
       </div>
       <ToastContainer />
-    </div>
+    </>
   );
 };

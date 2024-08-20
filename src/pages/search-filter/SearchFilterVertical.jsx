@@ -113,7 +113,6 @@ export const SearchFilterVertical = () => {
     }
   }, [sortBy, currentPage, searchQuery, dispatch]);
 
-
   useEffect(() => {
     if (services.length > 0 && reviews.length > 0) {
       const serviceRatings = services.map((service) => {
@@ -247,7 +246,6 @@ export const SearchFilterVertical = () => {
     setIsCategoryOpen(false);
   };
 
-
   const handleSortByDropdownLeave = () => {
     setIsSortByOpen(false);
   };
@@ -295,7 +293,8 @@ export const SearchFilterVertical = () => {
 
     if (selectedCategory) {
       filtered = filtered.filter(
-        (service) => service.category.category_name === selectedCategory.category_name
+        (service) =>
+          service.category.category_name === selectedCategory.category_name
       );
     }
 
@@ -307,7 +306,6 @@ export const SearchFilterVertical = () => {
 
     return filtered;
   }, [sortedServices, searchQuery, selectedCategory, selectedCategoryType]);
-
 
   const currentServices = filteredServices.slice(
     indexOfFirstService,
@@ -324,113 +322,119 @@ export const SearchFilterVertical = () => {
   }
 
   return (
-    <div className="w-full overflow-hidden -mt-2 px-4 md:px-8 lg:px-24">
-      <SlideService />
-      <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between mt-6">
-        <div className="w-full md:w-1/2 h-[90px] flex flex-col md:flex-row items-start md:items-center">
-          <form className="w-full" onSubmit={handleSearch}>
-            <label
-              htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-            >
-              {t("Search")}
-            </label>
-            <div className="relative w-full">
-              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                <svg
-                  className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                  />
-                </svg>
-              </div>
-              <input
-                type="text"
-                id="default-search"
-                defaultValue={searchQuery}
-                onChange={handleSearchChange}
-                className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-2xl focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder={t("Enter_the_Category")}
-              />
-              <button
-                type="submit"
-                className="absolute right-2.5 bottom-2.5 text-white bg-Secondary hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#022278] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    <>
+      <Metadata
+        title="Service | Troka"
+        description="Browse all available services on TrovKa and find the perfect match for your needs."
+        author="TrovKa Team"
+        keywords="services, Troka, Service Listing"
+        thumbnail="https://i.ibb.co/s6D2gFC/trovka-icon.png"
+      />
+      <div className="w-full overflow-hidden -mt-2 px-4 md:px-8 lg:px-24">
+        <SlideService />
+        <div className="flex flex-col md:flex-row items-start md:items-center md:justify-between mt-6">
+          <div className="w-full md:w-1/2 h-[90px] flex flex-col md:flex-row items-start md:items-center">
+            <form className="w-full" onSubmit={handleSearch}>
+              <label
+                htmlFor="default-search"
+                className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
               >
                 {t("Search")}
-              </button>
-            </div>
-          </form>
-        </div>
-
-
-        <div className="flex flex-row flex-wrap items-center justify-center z-20 -mt-4 sm:mt-0">
-          <div className="relative flex-shrink-0 mx-2">
-            <button
-              onClick={toggleSortByDropdown}
-              className="flex justify-between border rounded-[8px] border-gray-500 w-full md:w-[150px]  pl-2 py-2 text-gray-500"
-            >
-              {selectedCategory
-                ? selectedCategory.category_name
-                : selectedCategoryType
-                  ? selectedCategoryType.name
-                  : "All"}
-              <RiArrowDropDownLine className="text-2xl md:text-3xl" />
-            </button>
-            {isSortByOpen && (
-              <ul className="absolute block bg-white border border-gray-500 dark:bg-gray-700 dark:border-gray-600 rounded-lg w-[170px] md:w-[180px] mt-2">
-                <li
-                  className="px-4 py-2 hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
-                  onClick={() => handleCategoryTypeSelect("All")}
-                >
-                  All
-                </li>
-                {categoryTypes.map((categoryType) => (
-                  <li
-                    key={categoryType.id}
-                    className="relative px-4 py-2 hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
-                    onMouseEnter={() =>
-                      handleCategoryTypeHover(categoryType.id)
-                    }
-                    onMouseLeave={handleCategoryTypeLeave} // Added this line to handle mouse leave
-                    onClick={() => handleCategoryTypeSelect(categoryType)} // Select category type
+              </label>
+              <div className="relative w-full">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
                   >
-                    {categoryType.name}
-                    {activeCategoryType === categoryType.id && (
-                      <ul className="block absolute left-full top-0 bg-white dark:bg-gray-800 mt-2  border border-gray-300 dark:border-gray-600 rounded-lg">
-                        {categories
-                          .filter(
-                            (category) =>
-                              category.category_type === categoryType.id
-                          )
-                          .map((category) => (
-                            <li
-                              key={category.id}
-                              className="px-7 py-2 no-wrap hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
-                              onClick={(e) => {
-                                e.stopPropagation(); // Prevents the category type from being deselected when selecting a category
-                                handleCategorySelect(category);
-                              }}
-                            >
-                              {category.category_name}
-                            </li>
-                          ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  id="default-search"
+                  defaultValue={searchQuery}
+                  onChange={handleSearchChange}
+                  className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-2xl focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder={t("Enter_the_Category")}
+                />
+                <button
+                  type="submit"
+                  className="absolute right-2.5 bottom-2.5 text-white bg-Secondary hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#022278] dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  {t("Search")}
+                </button>
+              </div>
+            </form>
           </div>
 
+          <div className="flex flex-row flex-wrap items-center justify-center z-20 -mt-4 sm:mt-0">
+            <div className="relative flex-shrink-0 mx-2">
+              <button
+                onClick={toggleSortByDropdown}
+                className="flex justify-between border rounded-[8px] border-gray-500 w-full md:w-[150px]  pl-2 py-2 text-gray-500"
+              >
+                {selectedCategory
+                  ? selectedCategory.category_name
+                  : selectedCategoryType
+                  ? selectedCategoryType.name
+                  : "All"}
+                <RiArrowDropDownLine className="text-2xl md:text-3xl" />
+              </button>
+              {isSortByOpen && (
+                <ul className="absolute block bg-white border border-gray-500 dark:bg-gray-700 dark:border-gray-600 rounded-lg w-[170px] md:w-[180px] mt-2">
+                  <li
+                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
+                    onClick={() => handleCategoryTypeSelect("All")}
+                  >
+                    All
+                  </li>
+                  {categoryTypes.map((categoryType) => (
+                    <li
+                      key={categoryType.id}
+                      className="relative px-4 py-2 hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
+                      onMouseEnter={() =>
+                        handleCategoryTypeHover(categoryType.id)
+                      }
+                      onMouseLeave={handleCategoryTypeLeave} // Added this line to handle mouse leave
+                      onClick={() => handleCategoryTypeSelect(categoryType)} // Select category type
+                    >
+                      {categoryType.name}
+                      {activeCategoryType === categoryType.id && (
+                        <ul className="block absolute left-full top-0 bg-white dark:bg-gray-800 mt-2  border border-gray-300 dark:border-gray-600 rounded-lg">
+                          {categories
+                            .filter(
+                              (category) =>
+                                category.category_type === categoryType.id
+                            )
+                            .map((category) => (
+                              <li
+                                key={category.id}
+                                className="px-7 py-2 no-wrap hover:bg-gray-200 cursor-pointer dark:text-gray-200 hover:dark:text-black"
+                                onClick={(e) => {
+                                  e.stopPropagation(); // Prevents the category type from being deselected when selecting a category
+                                  handleCategorySelect(category);
+                                }}
+                              >
+                                {category.category_name}
+                              </li>
+                            ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
 
             <div className="relative flex-shrink-0 mx-2">
               <button
@@ -511,6 +515,7 @@ export const SearchFilterVertical = () => {
           onPageChange={handlePageChange}
         />
       </div>
+    </>
   );
 };
 
