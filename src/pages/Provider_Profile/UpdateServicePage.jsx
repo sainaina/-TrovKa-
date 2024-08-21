@@ -52,9 +52,9 @@ export default function UpdateServicePage() {
       setFormData({
         serviceName: service.name,
         servicePrice: service.price,
-        location: service.location,
-        category: service.category_type,
-        subCategory: service.category,
+        location: service.location.id,
+        category: service.category.category_type,
+        subCategory: service.category.id,
         description: service.description,
         serviceImage: service.image,
         startDay: service.working_days.split('-')[0],
@@ -91,6 +91,7 @@ export default function UpdateServicePage() {
       });
     }
   };
+
 
   const validate = () => {
     const newErrors = {};
@@ -159,6 +160,7 @@ export default function UpdateServicePage() {
     setFormData({ ...formData, serviceImage: null });
     setImagePreview(null);
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen dark:bg-gray-900 bg-gray-100 p-4">
@@ -241,8 +243,9 @@ export default function UpdateServicePage() {
               value={formData.subCategory}
               onChange={handleChange}
               className={`form-control w-full dark:bg-gray-900 p-2 border rounded ${errors.subCategory ? 'border-red-500' : 'border-gray-300'}`}
-            >   
-              <option value="">{t('Select')}</option>
+            >
+
+<option value="">{t('Select')}</option>
               {filteredSubCategories.map(subCategory => (
                 <option key={subCategory.id} value={subCategory.id}>{subCategory.name}{subCategory.category_name}</option>
               ))}
@@ -327,6 +330,7 @@ export default function UpdateServicePage() {
               type="time"
               id="startTime"
               name="startTime"
+
               value={formData.startTime}
               onChange={handleChange}
               className={`form-control dark:bg-gray-900 w-full p-2 border rounded ${errors.startTime ? 'border-red-500' : 'border-gray-300'}`}
@@ -362,4 +366,3 @@ export default function UpdateServicePage() {
     </div>
   );
 }
-

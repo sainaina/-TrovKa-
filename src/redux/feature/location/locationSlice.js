@@ -35,7 +35,7 @@ export const postLocation = createAsyncThunk(
   }
 );
 
-// Fetch all locations
+// Fetch all locations with pagination handling
 export const fetchLocations = createAsyncThunk(
   "locations/fetchLocations",
   async (_, { rejectWithValue }) => {
@@ -45,12 +45,15 @@ export const fetchLocations = createAsyncThunk(
 
     try {
       while (url) {
+        // Ensure the URL uses HTTPS
+        url = url.replace(/^http:/, "https:");
+
         const response = await fetch(url, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
         });
 
         if (!response.ok) {
@@ -62,6 +65,7 @@ export const fetchLocations = createAsyncThunk(
         allLocations = allLocations.concat(data.results); // Assuming the API response has a "results" field
         url = data.next; // Move to the next page, assuming "next" field contains the URL for next page
       }
+
       return allLocations;
     } catch (error) {
       return rejectWithValue({ message: error.message });
