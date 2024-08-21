@@ -8,31 +8,36 @@ const initialState = {
 };
 
 // Helper function to recursively fetch all pages of reviews
+// Helper function to recursively fetch all pages of reviews
 const fetchAllReviews = async (url, token, allReviews = []) => {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+try {
+  // Ensure the URL uses HTTPS
+  url = url.replace(/^http:/, "https:");
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch reviews");
-    }
+  const response = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    const data = await response.json();
-    allReviews = allReviews.concat(data.results);
-
-    if (data.next) {
-      return await fetchAllReviews(data.next, token, allReviews);
-    }
-
-    return allReviews;
-  } catch (err) {
-    throw err;
+  if (!response.ok) {
+    throw new Error("Failed to fetch reviews");
   }
+
+  const data = await response.json();
+  allReviews = allReviews.concat(data.results);
+
+  if (data.next) {
+    return await fetchAllReviews(data.next, token, allReviews);
+  }
+
+  return allReviews;
+} catch (err) {
+  throw err;
+}
 };
+
 
 // Fetch all reviews
 export const fetchReviews = createAsyncThunk(
@@ -135,6 +140,7 @@ export const unlikeReview = createAsyncThunk(
       if (!response.ok) {
         throw new Error("Failed to unlike review");
       }
+
 
       return reviewId;
     } catch (err) {
