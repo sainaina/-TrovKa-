@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaStar, FaRegStar, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
@@ -58,7 +59,7 @@ const ReviewCard = ({ id, name, date, rating, text, likeCount, unlikeCount }) =>
         <span className="text-gray-500">{date}</span>
       </div>
       <Rating rating={rating} />
-      <p className="text-gray-700 mt-2">{text}</p>
+      <p className="text-gray-700 dark:text-gray-300 mt-2">{text}</p>
       <div className="flex items-center mt-2">
         <button
           className={`mr-2 ${userAction === 'like' ? 'text-blue-500' : 'text-gray-500'}`}
@@ -108,6 +109,7 @@ const AverageRating = ({ averageRating, reviewCounts }) => {
     </div>
   );
 };
+
 
 // ReviewForm Component
 const ReviewForm = ({ serviceId, onReviewSubmit }) => {
@@ -222,6 +224,7 @@ const WriteReview = ({ service }) => {
     acc[rating]++;
     return acc;
   }, {});
+
 
   return (
     <div className="max-w-7xl mx-auto p-9 mb-24 -mt-8 max-lg:px-10 max-sm:px-10 max-md:px-8 px-10">

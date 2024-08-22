@@ -8,6 +8,7 @@ import { RiCustomerService2Line } from "react-icons/ri";
 import ChartProvider from "../../components/common/ChartProvider";
 import { useTranslation } from "react-i18next";
 import clsx from "clsx";
+import { GrFavorite } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
 import { selectServices, fetchProviderServices } from "../../redux/feature/service/providerServiceSlice";
 import { selectReviews, fetchReviews } from "../../redux/feature/review/reviewSlice";
@@ -35,7 +36,7 @@ const ProviderDashboardOverall = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const dispatch = useDispatch();
-  
+
   const [isOpen, setIsOpen] = useState(false);
   const [activePath, setActivePath] = useState(location.pathname);
 
@@ -106,6 +107,11 @@ const ProviderDashboardOverall = () => {
       label: t("My_Service"),
       path: "/my-service",
     },
+    {
+      icon: GrFavorite,
+      label: t("Favorite"),
+      path: "/provider-favorite",
+    },
     { icon: VscPreview, label: t("Reviews"), path: "/provider-review" },
     {
       icon: RiLockPasswordLine,
@@ -132,9 +138,8 @@ const ProviderDashboardOverall = () => {
               {t("Menu")}
             </button>
             <div
-              className={`flex flex-col text-base tracking-wide leading-6 text-neutral-500 ${
-                isOpen ? "block" : "hidden"
-              }`}
+              className={`flex flex-col text-base tracking-wide leading-6 text-neutral-500 ${isOpen ? "block" : "hidden"
+                }`}
             >
               <div className="flex flex-col gap-5 justify-between items-start pt-8 pb-14 px-8 md:px-0 md:pl-8 w-full bg-white dark:bg-gray-800 rounded-tr-lg">
                 {menuItems.map((item) => (
@@ -196,6 +201,8 @@ const ProviderDashboardOverall = () => {
                 <RiCustomerService2Line className="shrink-0 w-16 aspect-square text-[50px] text-white" />
               </div>
             </div>
+
+            
 
             <div className="flex flex-col items-center px-16 pt-20 pb-9 mt-6 bg-white rounded-2xl max-md:px-5 max-md:max-w-full">
               <ChartProvider />
