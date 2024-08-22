@@ -285,7 +285,7 @@ function MainApp() {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <HelmetProvider context={Metadata}>
+      <HelmetProvider>
         <MainApp />
       </HelmetProvider>
     </Provider>
